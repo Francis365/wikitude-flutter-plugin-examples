@@ -1,2 +1,2 @@
-rootProject.name = 'wikitude_plugin'
-include ':wikitudesdk'
+//rootProject.name = 'wikitude_plugin'
+//include ':wikitudesdk'

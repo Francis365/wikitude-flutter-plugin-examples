@@ -5,6 +5,10 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        flatDir {
+            dirs 'libs'
+        }
     }
 
     dependencies {
@@ -17,9 +21,6 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs project(':wikitudesdk').file('libs')
-        }
     }
 }
 
@@ -38,6 +39,12 @@ android {
 
     namespace 'com.wikitude.wikitude_plugin'
 }
+
+//repositories {
+//    flatDir {
+//        dirs 'libs'
+//    }
+//}
 
 dependencies {
 
