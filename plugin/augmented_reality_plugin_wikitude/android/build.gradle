@@ -32,6 +32,8 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    namespace 'com.wikitude.wikitude_plugin'
 }
 
 repositories {
