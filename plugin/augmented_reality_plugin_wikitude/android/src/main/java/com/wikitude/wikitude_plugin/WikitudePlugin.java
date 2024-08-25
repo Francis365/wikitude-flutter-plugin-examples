@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.Settings;
 
 import com.google.gson.Gson;
+//import com.wikitude.WikitudeSDK;
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.common.CallStatus;
 import com.wikitude.common.permission.PermissionManager;
