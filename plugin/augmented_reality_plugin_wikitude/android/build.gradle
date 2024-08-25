@@ -8,7 +8,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0'
+        classpath 'com.android.tools.build:gradle:8.4.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23'
     }
 }
 
@@ -22,7 +23,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 23
@@ -34,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.google.ar:core:1.19.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.ar:core:1.45.0'
     implementation files('wikitudesdk/wikitudesdk.aar')
 }
