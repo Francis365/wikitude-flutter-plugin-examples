@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        flatDir {
+            dirs 'libs', '../augmented_reality_plugin_wikitude/libs'
+        }
 //        maven {
 //            url 'https://cdn.wikitude.com/sdk/maven'
 //        }
@@ -20,6 +23,9 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        flatDir {
+            dirs 'libs', '../augmented_reality_plugin_wikitude/libs'
+        }
 //        maven {
 //            url 'https://cdn.wikitude.com/sdk/maven'
 //        }
@@ -42,11 +48,11 @@ android {
     namespace 'com.wikitude.wikitude_plugin'
 }
 
-repositories {
-    flatDir {
-        dirs 'libs', '../augmented_reality_plugin_wikitude/libs'
-    }
-}
+//repositories {
+//    flatDir {
+//        dirs 'libs', '../augmented_reality_plugin_wikitude/libs'
+//    }
+//}
 
 dependencies {
 
