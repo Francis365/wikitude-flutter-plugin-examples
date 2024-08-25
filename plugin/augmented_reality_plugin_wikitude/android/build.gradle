@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://cdn.wikitude.com/sdk/maven'
+        }
     }
 
     dependencies {
@@ -17,9 +20,8 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
-
-        flatDir {
-            dirs 'libs'
+        maven {
+            url 'https://cdn.wikitude.com/sdk/maven'
         }
     }
 }
@@ -55,6 +57,9 @@ dependencies {
 //    implementation files('wikitudesdk/wikitudesdk.aar')
 //    implementation project(':wikitudesdk')
 
-    implementation(name: 'wikitudesdk', ext: 'aar')
+//    implementation(name: 'wikitudesdk', ext: 'aar')
+
+
+    implementation 'com.wikitude:native:9.10.0'
 
 }
