@@ -26,5 +26,9 @@ dev_dependencies:
 
 flutter:
   plugin:
-    androidPackage: com.wikitude.wikitude_plugin
-    pluginClass: WikitudePlugin
+    platforms:
+      android:
+        package: com.wikitude.wikitude_plugin
+        pluginClass: WikitudePlugin
+      ios:
+        pluginClass: WikitudePlugin
