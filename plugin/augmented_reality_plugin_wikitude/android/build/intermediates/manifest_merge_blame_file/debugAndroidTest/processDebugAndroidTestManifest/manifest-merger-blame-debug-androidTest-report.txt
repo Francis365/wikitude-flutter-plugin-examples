@@ -1,0 +1,81 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.wikitude.wikitude_plugin.test" >
+4
+5    <uses-sdk
+5-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:5:5-74
+6        android:minSdkVersion="23"
+6-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:5:15-41
+7        android:targetSdkVersion="23" />
+7-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:5:42-71
+8
+9    <instrumentation
+9-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:11:5-15:83
+10        android:name="android.support.test.runner.AndroidJUnitRunner"
+10-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:11:22-83
+11        android:functionalTest="false"
+11-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:13:22-53
+13        android:label="Tests for com.wikitude.wikitude_plugin.test"
+13-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:15:22-81
+14        android:targetPackage="com.wikitude.wikitude_plugin.test" />
+14-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:12:22-79
+15
+16    <queries>
+16-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:20:5-27:15
+17        <package android:name="com.google.ar.core" />
+17-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:21:9-54
+17-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:21:18-51
+18        <package android:name="com.android.vending" />
+18-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:22:9-55
+18-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:22:18-52
+19
+20        <intent>
+20-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:24:9-26:18
+21            <action android:name="com.google.android.play.core.install.BIND_INSTALL_SERVICE" />
+21-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:25:13-96
+21-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:25:21-93
+22        </intent>
+23    </queries>
+24
+25    <application
+25-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:7:5-9:19
+26        android:debuggable="true"
+27        android:extractNativeLibs="false" >
+28        <uses-library android:name="android.test.runner" />
+28-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:8:9-60
+28-->/Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest5475252714015940767.xml:8:23-57
+29        <!-- The minimal version code of ARCore APK required for an app using this SDK. -->
+30        <meta-data
+30-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:32:9-34:41
+31            android:name="com.google.ar.core.min_apk_version"
+31-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:33:13-62
+32            android:value="241930000" /> <!-- This activity is critical for installing ARCore when it is not already present. -->
+32-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:34:13-38
+33        <activity
+33-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:36:9-42:80
+34            android:name="com.google.ar.core.InstallActivity"
+34-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:37:13-62
+35            android:configChanges="keyboardHidden|orientation|screenSize"
+35-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:38:13-74
+36            android:excludeFromRecents="true"
+36-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:39:13-46
+37            android:exported="false"
+37-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:40:13-37
+38            android:launchMode="singleTop"
+38-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:41:13-43
+39            android:theme="@android:style/Theme.Material.Light.Dialog.Alert" />
+39-->[com.google.ar:core:1.45.0] /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/AndroidManifest.xml:42:13-77
+40        <activity android:name="com.wikitude.architect.BrowserActivity" />
+40-->[com.wikitude:js:9.10.0] /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/AndroidManifest.xml:10:9-75
+40-->[com.wikitude:js:9.10.0] /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/AndroidManifest.xml:10:19-72
+41        <activity
+41-->[com.wikitude:js:9.10.0] /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/AndroidManifest.xml:11:9-13:77
+42            android:name="com.wikitude.tools.activities.MediaPlayerActivity"
+42-->[com.wikitude:js:9.10.0] /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/AndroidManifest.xml:12:13-77
+43            android:configChanges="orientation|keyboardHidden|screenSize" />
+43-->[com.wikitude:js:9.10.0] /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/AndroidManifest.xml:13:13-74
+44    </application>
+45
+46</manifest>

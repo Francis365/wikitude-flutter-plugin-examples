@@ -1,0 +1,7 @@
+com.wikitude.wikitude_plugin.test-core-1.45.0-0 /Users/francis/.gradle/caches/transforms-4/b170a8f7222e5191ff6fc9464d6bf6f0/transformed/core-1.45.0/res
+com.wikitude.wikitude_plugin.test-js-9.10.0-1 /Users/francis/.gradle/caches/transforms-4/eff64bd350c7a1c988cd57c586df6734/transformed/js-9.10.0/res
+com.wikitude.wikitude_plugin.test-androidTest-2 /Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/generated/res/resValues/androidTest/debug
+com.wikitude.wikitude_plugin.test-mergeDebugAndroidTestResources-3 /Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.wikitude.wikitude_plugin.test-mergeDebugAndroidTestResources-4 /Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.wikitude.wikitude_plugin.test-debugAndroidTest-5 /Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
+com.wikitude.wikitude_plugin.test-debug-6 /Users/francis/Development/flutter/wikitude-flutter-plugin-examples/plugin/augmented_reality_plugin_wikitude/android/build/intermediates/packaged_res/debug/packageDebugResources

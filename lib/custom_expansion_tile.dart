@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 const Duration _expandDuration = Duration(milliseconds: 200);
 
 class CustomExpansionTile extends StatefulWidget {
-
   const CustomExpansionTile({
     required Key key,
     this.expandDuration,
@@ -55,13 +54,14 @@ class CustomExpansionTile extends StatefulWidget {
 
   @override
   CustomExpansionTileState createState() => CustomExpansionTileState();
-
 }
 
-class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTickerProviderStateMixin {
-
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+class CustomExpansionTileState extends State<CustomExpansionTile>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
 
   final ColorTween _headerBackgroundColorTween = ColorTween();
 
@@ -75,12 +75,15 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: widget.expandDuration ?? _expandDuration, vsync: this);
+    _controller = AnimationController(
+        duration: widget.expandDuration ?? _expandDuration, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    _headerBackgroundColor = _controller.drive(_headerBackgroundColorTween.chain(_easeInTween));
+    _headerBackgroundColor =
+        _controller.drive(_headerBackgroundColorTween.chain(_easeInTween));
 
-    _isExpanded = PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
+    _isExpanded =
+        PageStorage.of(context).readState(context) ?? widget.initiallyExpanded;
     if (_isExpanded) _controller.value = 1.0;
   }
 
@@ -98,7 +101,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
       } else {
         _controller.reverse();
       }
-      PageStorage.of(context)?.writeState(context, _isExpanded);
+      PageStorage.of(context).writeState(context, _isExpanded);
     });
     if (widget.onExpansionChanged != null)
       widget.onExpansionChanged!(_isExpanded);
@@ -107,7 +110,7 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
   Widget _buildChildren(BuildContext context, Widget? child) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget> [
+      children: <Widget>[
         Container(
           color: _headerBackgroundColor.value,
           child: ListTile(
@@ -116,25 +119,21 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
             title: widget.title,
             onTap: _handleTap,
             trailing: widget.trailing ??
-              RotationTransition(
-                turns: _iconTurns,
-                child: Icon(
-                  Icons.expand_more,
-                  color: widget.iconColor ?? Colors.grey,
+                RotationTransition(
+                  turns: _iconTurns,
+                  child: Icon(
+                    Icons.expand_more,
+                    color: widget.iconColor ?? Colors.grey,
+                  ),
                 ),
-              ),
           ),
         ),
         ClipRect(
-          child: Align(
-            heightFactor: _heightFactor.value,
-            child: child
-          ),
+          child: Align(heightFactor: _heightFactor.value, child: child),
         ),
         Container(
-          color: widget.borderColor ?? Colors.transparent,
-          height: _isExpanded ? (widget.borderHeight ?? 0.75) : 0
-        ),
+            color: widget.borderColor ?? Colors.transparent,
+            height: _isExpanded ? (widget.borderHeight ?? 0.75) : 0),
       ],
     );
   }
@@ -143,7 +142,8 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
   void didChangeDependencies() {
     _headerBackgroundColorTween
       ..begin = widget.headerBackgroundColor ?? Colors.black
-      ..end = widget.headerBackgroundColorAccent ?? (widget.headerBackgroundColor ?? Colors.black);
+      ..end = widget.headerBackgroundColorAccent ??
+          (widget.headerBackgroundColor ?? Colors.black);
     super.didChangeDependencies();
   }
 
@@ -156,5 +156,4 @@ class CustomExpansionTileState extends State<CustomExpansionTile> with SingleTic
       child: closed ? null : Column(children: widget.children),
     );
   }
-
 }
