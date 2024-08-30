@@ -19,6 +19,7 @@ import com.wikitude.common.util.SDKBuildInformation;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 //import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
