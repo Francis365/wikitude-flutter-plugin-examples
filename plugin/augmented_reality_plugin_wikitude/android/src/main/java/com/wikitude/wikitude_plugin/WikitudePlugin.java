@@ -17,9 +17,9 @@ import com.wikitude.common.util.SDKBuildInformation;
 import java.util.ArrayList;
 import java.util.List;
 
-//import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 //import io.flutter.embedding.engine.plugins.activity.ActivityAware;
-//import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -28,7 +28,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 
 /** WikitudePlugin */
-public class WikitudePlugin implements MethodCallHandler, RequestPermissionsResultListener {
+public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, RequestPermissionsResultListener {
 
   private static Activity activity;
   private static ArchitectFactory architectFactory;
@@ -37,26 +37,52 @@ public class WikitudePlugin implements MethodCallHandler, RequestPermissionsResu
 
   private final PermissionManager permissionManager = ArchitectView.getPermissionManager();
 
+
+    /** Initialize the plugin (common to both v1 and v2). */
+    private void initPlugin(BinaryMessenger messenger, Activity activity) {
+      
+        this.channel = new MethodChannel(messenger, "wikitude_plugin");
+        this.channel.setMethodCallHandler(this);
+        WikitudePlugin.activity = activity;
+        architectFactory = new ArchitectFactory(registrar, activity);
+        registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+
+        Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
+
+    }
+
   /** Plugin registration. */
   public static void registerWith(Registrar registrar) {
     activity = registrar.activity();
 
-    Toast.makeText(activity, "registering", Toast.LENGTH_SHORT).show();
 
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
-    WikitudePlugin wikitudePlugin = new WikitudePlugin();
-    channel.setMethodCallHandler(wikitudePlugin);
+    WikitudePlugin plugin = new WikitudePlugin();
+    plugin.initPlugin(registrar.messenger(), activity);
+    registrar.addRequestPermissionsResultListener(plugin);
 
-    registrar.addRequestPermissionsResultListener(wikitudePlugin);
 
-    if (activity != null) {
-      architectFactory = new ArchitectFactory(registrar, activity);
-      registrar
-              .platformViewRegistry()
-              .registerViewFactory(
-                      "architectwidget", architectFactory);
-    }
+    // final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
+    // WikitudePlugin wikitudePlugin = new WikitudePlugin();
+    // channel.setMethodCallHandler(wikitudePlugin);
+
+    // registrar.addRequestPermissionsResultListener(wikitudePlugin);
+
+    // if (activity != null) {
+    //   architectFactory = new ArchitectFactory(registrar, activity);
+    //   registrar
+    //           .platformViewRegistry()
+    //           .registerViewFactory(
+    //                   "architectwidget", architectFactory);
+    // }
   }
+
+
+    /** Plugin registration for new API (v2 embedding). */
+    @Override
+    public void onAttachedToEngine(FlutterPluginBinding binding) {
+        channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
+        channel.setMethodCallHandler(this);
+    }
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
@@ -82,6 +108,33 @@ public class WikitudePlugin implements MethodCallHandler, RequestPermissionsResu
         break;
     }
   }
+
+  @Override
+    public void onDetachedFromEngine(FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
+    }
+
+    @Override
+    public void onAttachedToActivity(ActivityPluginBinding binding) {
+        activity = binding.getActivity();
+        binding.addRequestPermissionsResultListener(this);
+    }
+
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+        activity = null;
+    }
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+        activity = binding.getActivity();
+        binding.addRequestPermissionsResultListener(this);
+    }
+
+    @Override
+    public void onDetachedFromActivity() {
+        activity = null;
+    }
 
   private String isDeviceSupporting(List<String> features) {
     final CallStatus callStatus = ArchitectView.isDeviceSupporting(activity.getApplicationContext(), FeaturesHelper.convertArFeatures(features));
