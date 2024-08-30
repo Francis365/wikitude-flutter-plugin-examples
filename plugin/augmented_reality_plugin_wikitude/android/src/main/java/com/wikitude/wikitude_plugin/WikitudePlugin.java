@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 //import com.wikitude.WikitudeSDK;
@@ -39,6 +40,9 @@ public class WikitudePlugin implements MethodCallHandler, RequestPermissionsResu
   /** Plugin registration. */
   public static void registerWith(Registrar registrar) {
     activity = registrar.activity();
+
+    Toast.makeText(activity, "registering", Toast.LENGTH_SHORT).show();
+
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
     WikitudePlugin wikitudePlugin = new WikitudePlugin();
     channel.setMethodCallHandler(wikitudePlugin);
@@ -56,6 +60,7 @@ public class WikitudePlugin implements MethodCallHandler, RequestPermissionsResu
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
+    Toast.makeText(activity, "method: " + call.method, Toast.LENGTH_SHORT).show();
     switch (call.method) {
       case "isDeviceSupporting":
         result.success(isDeviceSupporting((List<String>)call.arguments));
