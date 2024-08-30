@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 //import com.wikitude.WikitudeSDK;
 import com.wikitude.architect.ArchitectView;
@@ -32,6 +34,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
   private static Activity activity;
   private static ArchitectFactory architectFactory;
+  private MethodChannel channel;
 
   private Result permissionResult;
 
@@ -79,7 +82,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
     /** Plugin registration for new API (v2 embedding). */
     @Override
-    public void onAttachedToEngine(FlutterPluginBinding binding) {
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
         channel.setMethodCallHandler(this);
     }
@@ -110,31 +113,31 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
   }
 
   @Override
-    public void onDetachedFromEngine(FlutterPluginBinding binding) {
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
     }
 
-    @Override
-    public void onAttachedToActivity(ActivityPluginBinding binding) {
-        activity = binding.getActivity();
-        binding.addRequestPermissionsResultListener(this);
-    }
+//    @Override
+//    public void onAttachedToActivity(ActivityPluginBinding binding) {
+//        activity = binding.getActivity();
+//        binding.addRequestPermissionsResultListener(this);
+//    }
+//
+//    @Override
+//    public void onDetachedFromActivityForConfigChanges() {
+//        activity = null;
+//    }
 
-    @Override
-    public void onDetachedFromActivityForConfigChanges() {
-        activity = null;
-    }
-
-    @Override
-    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
-        activity = binding.getActivity();
-        binding.addRequestPermissionsResultListener(this);
-    }
-
-    @Override
-    public void onDetachedFromActivity() {
-        activity = null;
-    }
+//    @Override
+//    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+//        activity = binding.getActivity();
+//        binding.addRequestPermissionsResultListener(this);
+//    }
+//
+//    @Override
+//    public void onDetachedFromActivity() {
+//        activity = null;
+//    }
 
   private String isDeviceSupporting(List<String> features) {
     final CallStatus callStatus = ArchitectView.isDeviceSupporting(activity.getApplicationContext(), FeaturesHelper.convertArFeatures(features));
