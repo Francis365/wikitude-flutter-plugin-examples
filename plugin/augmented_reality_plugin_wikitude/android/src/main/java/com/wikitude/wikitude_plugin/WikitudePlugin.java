@@ -47,8 +47,6 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
         this.channel = new MethodChannel(messenger, "wikitude_plugin");
         this.channel.setMethodCallHandler(this);
         WikitudePlugin.activity = activity;
-        architectFactory = new ArchitectFactory(registrar, activity);
-        registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
 
         Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
 
@@ -61,6 +59,9 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
     WikitudePlugin plugin = new WikitudePlugin();
     plugin.initPlugin(registrar.messenger(), activity);
+    architectFactory = new ArchitectFactory(registrar, activity);
+    registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+
     registrar.addRequestPermissionsResultListener(plugin);
 
 
@@ -85,6 +86,9 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
         channel.setMethodCallHandler(this);
+
+      Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
+        
     }
 
   @Override
