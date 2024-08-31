@@ -1,6 +1,7 @@
 package com.wikitude.wikitude_plugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -35,6 +36,7 @@ import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, RequestPermissionsResultListener, ActivityAware {
 
   private Activity activity;
+    private Context context;
   private ActivityPluginBinding activityBinding;
   private ArchitectFactory architectFactory;
   private MethodChannel channel;
@@ -94,6 +96,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
 
 //      activity = binding.getActivity();
+        this.context = binding.getApplicationContext();
 
       architectFactory = new ArchitectFactory(binding);
       binding
@@ -101,7 +104,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
               .registerViewFactory(
                       "architectwidget", architectFactory);
 
-      Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
+      Toast.makeText(context, "registered", Toast.LENGTH_SHORT).show();
         
     }
 
@@ -148,7 +151,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
-    Toast.makeText(activity, "method: " + call.method, Toast.LENGTH_SHORT).show();
+    Toast.makeText(context, "method: " + call.method, Toast.LENGTH_SHORT).show();
     switch (call.method) {
       case "isDeviceSupporting":
         result.success(isDeviceSupporting((List<String>)call.arguments));
