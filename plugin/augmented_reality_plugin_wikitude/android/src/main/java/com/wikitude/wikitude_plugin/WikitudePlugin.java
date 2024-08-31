@@ -38,6 +38,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
   private Activity activity;
     private Context context;
   private ActivityPluginBinding activityBinding;
+  private FlutterPluginBinding flutterPluginBinding;
   private ArchitectFactory architectFactory;
   private MethodChannel channel;
 
@@ -89,6 +90,8 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
     /** Plugin registration for new API (v2 embedding). */
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        flutterPluginBinding = binding;
+
         channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
         channel.setMethodCallHandler(this);
 
@@ -98,11 +101,11 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 //      activity = binding.getActivity();
         this.context = binding.getApplicationContext();
 
-      architectFactory = new ArchitectFactory(binding);
-      binding
-              .getPlatformViewRegistry()
-              .registerViewFactory(
-                      "architectwidget", architectFactory);
+//      architectFactory = new ArchitectFactory(binding);
+//      binding
+//              .getPlatformViewRegistry()
+//              .registerViewFactory(
+//                      "architectwidget", architectFactory);
 
       // Toast.makeText(context, "registered", Toast.LENGTH_SHORT).show();
         
@@ -113,13 +116,23 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
     architectFactory = null;
+    flutterPluginBinding = null;
   }
 
     @Override
   public void onAttachedToActivity(ActivityPluginBinding binding) {
     this.activityBinding = binding;
     activity = binding.getActivity();
-//    architectFactory = new ArchitectFactory(binding.getActivity());
+
+    if (flutterPluginBinding != null) {
+      architectFactory = new ArchitectFactory(flutterPluginBinding, activity);
+
+      flutterPluginBinding
+              .getPlatformViewRegistry()
+              .registerViewFactory(
+                      "architectwidget", architectFactory);
+    }
+
     binding.addRequestPermissionsResultListener(this);
 
     Toast.makeText(activity, "onAttachedToActivity", Toast.LENGTH_SHORT).show();
@@ -132,6 +145,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
       this.activityBinding.removeRequestPermissionsResultListener(this);
     }
     this.activityBinding = null;
+    this.architectFactory = null;
 
     activity = null;
   }
@@ -148,6 +162,8 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
       this.activityBinding.removeRequestPermissionsResultListener(this);
     }
     this.activityBinding = null;
+    this.architectFactory = null;
+
     activity = null;
   }
 
