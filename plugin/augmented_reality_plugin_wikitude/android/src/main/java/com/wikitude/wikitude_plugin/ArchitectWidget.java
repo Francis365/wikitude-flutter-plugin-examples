@@ -44,6 +44,9 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterAssets;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
@@ -58,7 +61,7 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
     private static final String TAG = ArchitectWidget.class.getSimpleName();
 
     private Context context;
-    private Registrar registrar;
+    private FlutterAssets flutterAssets;
     private ArchitectView architectView;
     private MethodChannel channel;
     private Result permissionResult;
@@ -82,9 +85,9 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
     State state;
 
     @SuppressLint("SetJavaScriptEnabled")
-    ArchitectWidget(Context context, Registrar registrar, int id, Object o) {
+    ArchitectWidget(Context context, FlutterPluginBinding binding, int id, Object o) {
         this.context = context;
-        this.registrar = registrar;
+        this.flutterAssets = flutterAssets.getFlutterAssets();
 
         gson = new Gson();
 
@@ -153,7 +156,7 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
             Log.e(TAG, "Malformed JSON");
         }
 
-        channel = new MethodChannel(registrar.messenger(), "architectwidget_" + id);
+        channel = new MethodChannel(binding.getBinaryMessenger(), "architectwidget_" + id);
         channel.setMethodCallHandler(this);
     }
 
@@ -178,7 +181,8 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
                 String url = call.arguments.toString();
                 if(!url.contains("https://") && !url.contains("http://") && !url.startsWith("file://")
                         && !url.startsWith(context.getFilesDir().getAbsolutePath())) {
-                    url = registrar.lookupKeyForAsset(url);
+//                    url = registrar.lookupKeyForAsset(url);
+                    url = flutterAssets.getAssetFilePathByName(url);
                 } else if (url.startsWith(context.getFilesDir().getAbsolutePath())) {
                     url = "file://" + url;
                 }

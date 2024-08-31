@@ -43,43 +43,43 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
 
     /** Initialize the plugin (common to both v1 and v2). */
-    private void initPlugin(BinaryMessenger messenger, Activity activity) {
-      
-        this.channel = new MethodChannel(messenger, "wikitude_plugin");
-        this.channel.setMethodCallHandler(this);
-        WikitudePlugin.activity = activity;
-
-        Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
-
-    }
+//    private void initPlugin(BinaryMessenger messenger, Activity activity) {
+//
+//        this.channel = new MethodChannel(messenger, "wikitude_plugin");
+//        this.channel.setMethodCallHandler(this);
+//        WikitudePlugin.activity = activity;
+//
+//        Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
+//
+//    }
 
   /** Plugin registration. */
-  public static void registerWith(Registrar registrar) {
-//    activity = registrar.activity();
+//  public static void registerWith(Registrar registrar) {
+////    activity = registrar.activity();
+////
+////
+////    WikitudePlugin plugin = new WikitudePlugin();
+////    plugin.initPlugin(registrar.messenger(), activity);
+////    architectFactory = new ArchitectFactory(registrar, activity);
+////    registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+////
+////    registrar.addRequestPermissionsResultListener(plugin);
 //
 //
-//    WikitudePlugin plugin = new WikitudePlugin();
-//    plugin.initPlugin(registrar.messenger(), activity);
-//    architectFactory = new ArchitectFactory(registrar, activity);
-//    registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+//     final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
+//     WikitudePlugin wikitudePlugin = new WikitudePlugin();
+//     channel.setMethodCallHandler(wikitudePlugin);
 //
-//    registrar.addRequestPermissionsResultListener(plugin);
-
-
-     final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
-     WikitudePlugin wikitudePlugin = new WikitudePlugin();
-     channel.setMethodCallHandler(wikitudePlugin);
-
-     registrar.addRequestPermissionsResultListener(wikitudePlugin);
-
-     if (activity != null) {
-       architectFactory = new ArchitectFactory(registrar, activity);
-       registrar
-               .platformViewRegistry()
-               .registerViewFactory(
-                       "architectwidget", architectFactory);
-     }
-  }
+//     registrar.addRequestPermissionsResultListener(wikitudePlugin);
+//
+//     if (activity != null) {
+//       architectFactory = new ArchitectFactory(registrar, activity);
+//       registrar
+//               .platformViewRegistry()
+//               .registerViewFactory(
+//                       "architectwidget", architectFactory);
+//     }
+//  }
 
 
     /** Plugin registration for new API (v2 embedding). */
@@ -87,6 +87,19 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
         channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
         channel.setMethodCallHandler(this);
+
+      binding.addRequestPermissionsResultListener(this);
+
+
+      activity = binding.getActivity();
+
+      if (activity != null) {
+        architectFactory = new ArchitectFactory(binding, activity);
+        binding
+                .platformViewRegistry()
+                .registerViewFactory(
+                        "architectwidget", architectFactory);
+      }
 
       Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
         
