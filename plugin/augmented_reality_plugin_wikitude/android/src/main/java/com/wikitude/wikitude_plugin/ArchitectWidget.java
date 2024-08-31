@@ -154,7 +154,7 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
             architectView.onCreate(config); // create ArchitectView with configuration
             state = State.CREATED;
         } catch (Throwable t) {
-            Log.e(TAG, "Malformed JSON");
+            Log.e(TAG, "Malformed JSON" + t.getMessage());
         }
 
         channel = new MethodChannel(binding.getBinaryMessenger(), "architectwidget_" + id);
