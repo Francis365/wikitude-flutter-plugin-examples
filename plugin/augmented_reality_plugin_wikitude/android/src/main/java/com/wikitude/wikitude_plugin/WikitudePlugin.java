@@ -122,7 +122,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 //    architectFactory = new ArchitectFactory(binding.getActivity());
     binding.addRequestPermissionsResultListener(this);
 
-    Toast.makeText(activity, "onAttachedToActivity", Toast.LENGTH_SHORT).show()
+    Toast.makeText(activity, "onAttachedToActivity", Toast.LENGTH_SHORT).show();
   }
 
   @Override
