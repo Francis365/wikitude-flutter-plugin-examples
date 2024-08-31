@@ -55,30 +55,30 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
   /** Plugin registration. */
   public static void registerWith(Registrar registrar) {
-    activity = registrar.activity();
+//    activity = registrar.activity();
+//
+//
+//    WikitudePlugin plugin = new WikitudePlugin();
+//    plugin.initPlugin(registrar.messenger(), activity);
+//    architectFactory = new ArchitectFactory(registrar, activity);
+//    registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+//
+//    registrar.addRequestPermissionsResultListener(plugin);
 
 
-    WikitudePlugin plugin = new WikitudePlugin();
-    plugin.initPlugin(registrar.messenger(), activity);
-    architectFactory = new ArchitectFactory(registrar, activity);
-    registrar.platformViewRegistry().registerViewFactory("architectwidget", architectFactory);
+     final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
+     WikitudePlugin wikitudePlugin = new WikitudePlugin();
+     channel.setMethodCallHandler(wikitudePlugin);
 
-    registrar.addRequestPermissionsResultListener(plugin);
+     registrar.addRequestPermissionsResultListener(wikitudePlugin);
 
-
-    // final MethodChannel channel = new MethodChannel(registrar.messenger(), "wikitude_plugin");
-    // WikitudePlugin wikitudePlugin = new WikitudePlugin();
-    // channel.setMethodCallHandler(wikitudePlugin);
-
-    // registrar.addRequestPermissionsResultListener(wikitudePlugin);
-
-    // if (activity != null) {
-    //   architectFactory = new ArchitectFactory(registrar, activity);
-    //   registrar
-    //           .platformViewRegistry()
-    //           .registerViewFactory(
-    //                   "architectwidget", architectFactory);
-    // }
+     if (activity != null) {
+       architectFactory = new ArchitectFactory(registrar, activity);
+       registrar
+               .platformViewRegistry()
+               .registerViewFactory(
+                       "architectwidget", architectFactory);
+     }
   }
 
 
