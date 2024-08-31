@@ -184,9 +184,9 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
                 if(!url.contains("https://") && !url.contains("http://") && !url.startsWith("file://")
                         && !url.startsWith(context.getFilesDir().getAbsolutePath())) {
 //                    url = registrar.lookupKeyForAsset(url);
-                    Toast.makeText(context, "url: " + url, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "url: " + url, Toast.LENGTH_SHORT).show();
                     url = flutterAssets.getAssetFilePathByName(url);
-                    Toast.makeText(context, "url 2: " + url, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "url 2: " + url, Toast.LENGTH_SHORT).show();
 
                 } else if (url.startsWith(context.getFilesDir().getAbsolutePath())) {
                     url = "file://" + url;
@@ -199,7 +199,7 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
                 } catch (IOException e) {
                     Log.e(TAG, "Load failed");
 
-                    Toast.makeText(context, "url 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "url 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
                 break;
