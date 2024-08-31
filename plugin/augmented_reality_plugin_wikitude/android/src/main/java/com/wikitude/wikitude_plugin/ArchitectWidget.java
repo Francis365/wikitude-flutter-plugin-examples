@@ -23,6 +23,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.wikitude.architect.ArchitectJavaScriptInterfaceListener;
@@ -183,7 +184,10 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
                 if(!url.contains("https://") && !url.contains("http://") && !url.startsWith("file://")
                         && !url.startsWith(context.getFilesDir().getAbsolutePath())) {
 //                    url = registrar.lookupKeyForAsset(url);
+                    Toast.makeText(context, "url: " + url, Toast.LENGTH_SHORT).show();
                     url = flutterAssets.getAssetFilePathByName(url);
+                    Toast.makeText(context, "url 2: " + url, Toast.LENGTH_SHORT).show();
+
                 } else if (url.startsWith(context.getFilesDir().getAbsolutePath())) {
                     url = "file://" + url;
                 }
@@ -194,6 +198,9 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
                     architectView.load(url);
                 } catch (IOException e) {
                     Log.e(TAG, "Load failed");
+
+                    Toast.makeText(context, "url 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                 }
                 break;
             case "onResume":
