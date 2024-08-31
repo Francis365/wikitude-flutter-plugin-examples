@@ -15,19 +15,19 @@ import static io.flutter.plugin.common.PluginRegistry.Registrar;
 public class ArchitectFactory extends PlatformViewFactory {
 
     private final FlutterPluginBinding mBinding;
-    private final Activity activity;
+//    private final Activity activity;
 
     private ArchitectWidget architectWidget;
 
-    public ArchitectFactory(FlutterPluginBinding binding, Activity activity) {
+    public ArchitectFactory(FlutterPluginBinding binding) {
         super(StandardMessageCodec.INSTANCE);
         mBinding = binding;
-        this.activity = activity;
+//        this.activity = activity;
     }
 
     @Override
     public PlatformView create(Context context, int i, Object o) {
-        architectWidget = new ArchitectWidget(activity, mBinding, i, o);
+        architectWidget = new ArchitectWidget(context, mBinding, i, o);
         return architectWidget;
     }
 

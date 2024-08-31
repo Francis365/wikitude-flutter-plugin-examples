@@ -34,8 +34,9 @@ import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 /** WikitudePlugin */
 public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, RequestPermissionsResultListener {
 
-  private static Activity activity;
-  private static ArchitectFactory architectFactory;
+  private Activity activity;
+  private ActivityPluginBinding activityBinding;
+  private ArchitectFactory architectFactory;
   private MethodChannel channel;
 
   private Result permissionResult;
@@ -89,22 +90,61 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
         channel = new MethodChannel(binding.getBinaryMessenger(), "wikitude_plugin");
         channel.setMethodCallHandler(this);
 
-      binding.addRequestPermissionsResultListener(this);
+//      binding.addRequestPermissionsResultListener(this);
 
 
-      activity = binding.getActivity();
+//      activity = binding.getActivity();
 
-      if (activity != null) {
-        architectFactory = new ArchitectFactory(binding, activity);
-        binding
-                .platformViewRegistry()
-                .registerViewFactory(
-                        "architectwidget", architectFactory);
-      }
+      architectFactory = new ArchitectFactory(binding);
+      binding
+              .getPlatformViewRegistry()
+              .registerViewFactory(
+                      "architectwidget", architectFactory);
 
       Toast.makeText(activity, "registered", Toast.LENGTH_SHORT).show();
         
     }
+
+
+  @Override
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    channel.setMethodCallHandler(null);
+    architectFactory = null;
+  }
+
+    @Override
+  public void onAttachedToActivity(ActivityPluginBinding binding) {
+    this.activityBinding = binding;
+    activity = binding.getActivity();
+//    architectFactory = new ArchitectFactory(binding.getActivity());
+    binding.addRequestPermissionsResultListener(this);
+  }
+
+  @Override
+  public void onDetachedFromActivityForConfigChanges() {
+    // Remove the listener before detaching
+    if (this.activityBinding != null) {
+      this.activityBinding.removeRequestPermissionsResultListener(this);
+    }
+    this.activityBinding = null;
+
+    activity = null;
+  }
+
+  @Override
+  public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+    onAttachedToActivity(binding);
+  }
+
+  @Override
+  public void onDetachedFromActivity() {
+    // Remove the listener before detaching
+    if (this.activityBinding != null) {
+      this.activityBinding.removeRequestPermissionsResultListener(this);
+    }
+    this.activityBinding = null;
+    activity = null;
+  }
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
@@ -130,11 +170,6 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
         break;
     }
   }
-
-  @Override
-  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-        channel.setMethodCallHandler(null);
-    }
 
 //    @Override
 //    public void onAttachedToActivity(ActivityPluginBinding binding) {
