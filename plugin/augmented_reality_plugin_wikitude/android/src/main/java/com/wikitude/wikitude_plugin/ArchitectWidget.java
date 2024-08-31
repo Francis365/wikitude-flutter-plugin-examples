@@ -45,7 +45,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterAssets;
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+//import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -87,7 +88,7 @@ public class ArchitectWidget implements PlatformView, MethodCallHandler, Archite
     @SuppressLint("SetJavaScriptEnabled")
     ArchitectWidget(Context context, FlutterPluginBinding binding, int id, Object o) {
         this.context = context;
-        this.flutterAssets = flutterAssets.getFlutterAssets();
+        this.flutterAssets = binding.getFlutterAssets();
 
         gson = new Gson();
 

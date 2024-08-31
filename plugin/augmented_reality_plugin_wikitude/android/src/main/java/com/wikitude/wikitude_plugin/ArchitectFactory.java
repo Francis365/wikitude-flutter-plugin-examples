@@ -3,7 +3,8 @@ package com.wikitude.wikitude_plugin;
 import android.app.Activity;
 import android.content.Context;
 
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+//import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding;
 
 import io.flutter.plugin.common.StandardMessageCodec;
 import io.flutter.plugin.platform.PlatformView;
