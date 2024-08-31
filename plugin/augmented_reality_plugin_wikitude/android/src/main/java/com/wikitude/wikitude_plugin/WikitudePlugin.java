@@ -104,7 +104,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
               .registerViewFactory(
                       "architectwidget", architectFactory);
 
-      Toast.makeText(context, "registered", Toast.LENGTH_SHORT).show();
+      // Toast.makeText(context, "registered", Toast.LENGTH_SHORT).show();
         
     }
 
@@ -121,6 +121,8 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
     activity = binding.getActivity();
 //    architectFactory = new ArchitectFactory(binding.getActivity());
     binding.addRequestPermissionsResultListener(this);
+
+    Toast.makeText(activity, "onAttachedToActivity", Toast.LENGTH_SHORT).show()
   }
 
   @Override
@@ -151,7 +153,7 @@ public class WikitudePlugin implements FlutterPlugin, MethodCallHandler, Request
 
   @Override
   public void onMethodCall(MethodCall call, final Result result) {
-    Toast.makeText(context, "method: " + call.method, Toast.LENGTH_SHORT).show();
+    // Toast.makeText(context, "method: " + call.method, Toast.LENGTH_SHORT).show();
     switch (call.method) {
       case "isDeviceSupporting":
         result.success(isDeviceSupporting((List<String>)call.arguments));
